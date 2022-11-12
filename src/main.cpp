@@ -21,6 +21,7 @@ int main() {
 	map.append(key, value);
 	if (map.exists(key)) {
 		std::cout << "it exists yay!!!" << std::endl;
+		std::cout << *map.get(key) << std::endl;
 	}
 }
 

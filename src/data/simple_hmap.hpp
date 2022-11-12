@@ -31,20 +31,31 @@ public:
 	simple_hmap operator = (simple_hmap&) = delete;
 	simple_hmap operator = (simple_hmap) = delete;
 public:
-	bool exists(K& key) {
+	bool exists(const K& key) {
 		return ref hmap.find(key) != ref hmap.end();
 	}
-	void append(K& key, V& value) noexcept {
+	void append(const K& key, V& value) noexcept {
 		ref hmap[key] = value;
 	}
-	void remove(K& key) {
+	void remove(const K& key) {
 		if (ref exists(key)) {
-			ref it = ref get(key);
+			ref it = ref get_iter(key);
 			ref hmap.erase(ref it);
 		}
 	}
-	typename std::map<K, V>::iterator get(K& key) {
+	typename std::map<K, V>::iterator get_iter(const K& key) {
 		return ref hmap.find(key);
+	}
+
+	V* get(const K& key) noexcept {
+		V* res = nullptr;
+		for (auto& kv : ref hmap) {
+			if (kv.first == key) {
+				res = &kv.second;
+				break;
+			}
+		}
+		return res;
 	}
 };
 
