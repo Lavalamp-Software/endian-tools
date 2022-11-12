@@ -32,19 +32,19 @@ public:
 	simple_hmap operator = (simple_hmap) = delete;
 public:
 	bool exists(K& key) {
-		return hmap.find(key) != hmap.end();
+		return ref hmap.find(key) != ref hmap.end();
 	}
 	void append(K& key, V& value) noexcept {
-		hmap[key] = value;
+		ref hmap[key] = value;
 	}
 	void remove(K& key) {
 		if (ref exists(key)) {
 			ref it = ref get(key);
-			hmap.erase(ref it);
+			ref hmap.erase(ref it);
 		}
 	}
 	typename std::map<K, V>::iterator get(K& key) {
-		return hmap.find(key);
+		return ref hmap.find(key);
 	}
 };
 
