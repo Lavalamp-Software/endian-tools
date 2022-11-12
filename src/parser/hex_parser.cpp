@@ -42,6 +42,13 @@ const char* hex_parser::to_cstr(int& __t) noexcept {
 
 int hex_parser::internal_hex_conv(int& _v) noexcept {
 	ref _lines = ref to_cstr(_v);
-	return 0;
+	int c = 0;
+	if (_lines[ref BUF_SIZE] != '\0')
+		c = false;
+	else {
+		// put each section into 4 places with a pair of 2
+
+	}
+	return c;
 }
 

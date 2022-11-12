@@ -13,7 +13,9 @@
 
 class hex_parser {
 private:
+	const static int BUF_SIZE = 8; // bits
 	const char* _lines = nullptr;
+	char buf[BUF_SIZE];
 	simple_hmap<char, int> hex_map;
 private:
 	const char* stds_cstr(const std::string&) noexcept;
