@@ -25,4 +25,5 @@ OBJS :=
 SUBDIRS := \
 src/conf \
 src \
+src/parser \
 

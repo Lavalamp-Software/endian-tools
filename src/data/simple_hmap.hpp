@@ -16,16 +16,17 @@ class simple_hmap {
 private:
 	std::map<K, V> hmap;
 	typename std::map<K, V>::iterator it;
-#define ref this->
 private:
-	void clear();
+	void clear() {
+		ref hmap.clear();
+	}
 public:
 	explicit simple_hmap() = default;
 
 	simple_hmap(const simple_hmap&) = delete;
 	simple_hmap(simple_hmap&) = delete;
 
-	~simple_hmap() { }
+	~simple_hmap() { ref clear(); }
 
 	simple_hmap operator = (const simple_hmap&) = delete;
 	simple_hmap operator = (simple_hmap&) = delete;
@@ -46,8 +47,7 @@ public:
 	typename std::map<K, V>::iterator get_iter(const K& key) {
 		return ref hmap.find(key);
 	}
-
-	V* get(const K& key) noexcept {
+	V get(const K& key) noexcept {
 		V* res = nullptr;
 		for (auto& kv : ref hmap) {
 			if (kv.first == key) {
@@ -55,7 +55,7 @@ public:
 				break;
 			}
 		}
-		return res;
+		return *res;
 	}
 };
 
